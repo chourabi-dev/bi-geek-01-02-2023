@@ -1,0 +1,5 @@
+1 - SELECT DISTINCT `Category` FROM `product` 
+2 - SELECT * FROM `product` WHERE `Price` < 2000
+3 - SELECT COUNT(*) AS `count` FROM `product` WHERE `Price` > 2000
+4 - SELECT MAX(`Price`) AS `max`, MIN(Price) AS `min`, AVG(`Price`) AS `avg` FROM `product`;
+5 - SELECT * FROM `product` ORDER BY `Price` DESC
