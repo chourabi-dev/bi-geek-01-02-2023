@@ -3,3 +3,27 @@
 3 - SELECT COUNT(*) AS `count` FROM `product` WHERE `Price` > 2000
 4 - SELECT MAX(`Price`) AS `max`, MIN(Price) AS `min`, AVG(`Price`) AS `avg` FROM `product`;
 5 - SELECT * FROM `product` ORDER BY `Price` DESC
+6 - SELECT  COUNT(*) AS `total` FROM `product` 
+7 - SELECT * FROM `product` WHERE `Price` BETWEEN 2000 AND 4000
+8 - SELECT COUNT(*) AS `total` FROM `product` WHERE `Price` BETWEEN 2000 AND 4000
+9 - SELECT *   FROM `product` WHERE `PName` BETWEEN 'a' AND 'c'
+10 - SELECT * FROM `product` WHERE `PName` LIKE '%lg%';
+11 - SELECT * FROM `product` ORDER BY `Price` DESC LIMIT 3
+12 - SELECT * FROM `product`,`company` WHERE product.Manufacturer = company.id_company AND ( company.CName = 'HP' OR company.CName='ASUS' );
+13 - SELECT * FROM `product`,company WHERE product.Manufacturer = company.id_company AND company.Country = 'Japan' AND product.Price <= 2000;
+14 - SELECT product.PName, company.Country FROM `product`,company WHERE product.Manufacturer = company.id_company AND product.PName='Sony PlayStation 2';
+15 - 
+SOLUTION 1
+
+SELECT DISTINCT company.CName FROM `product`,company WHERE 
+product.Manufacturer = company.id_company AND
+company.Country='Japan' AND product.Price > 1000
+
+
+SOLUTION 2
+SELECT CName FROM company WHERE Country='Japan'  AND  `id_company` IN ( SELECT Manufacturer FROM product WHERE Price > 1000 )
+
+
+
+16 - ( SELECT * FROM `product`,company WHERE product.Manufacturer = company.id_company AND company.Country='USA' ) UNION ( SELECT * FROM `product`,company WHERE product.Manufacturer = company.id_company AND company.Country='RUSSIA' );
+
