@@ -27,3 +27,52 @@ SELECT CName FROM company WHERE Country='Japan'  AND  `id_company` IN ( SELECT M
 
 16 - ( SELECT * FROM `product`,company WHERE product.Manufacturer = company.id_company AND company.Country='USA' ) UNION ( SELECT * FROM `product`,company WHERE product.Manufacturer = company.id_company AND company.Country='RUSSIA' );
 
+17 - SELECT prod.PName FROM `purchase` pur, `product` prod 
+WHERE 
+pur.product = prod.id_product AND
+
+pur.buyer = 'Wayne'
+
+18 - SELECT product.PName FROM `product`,purchase,company WHERE 
+
+purchase.product = product.id_product AND
+
+product.Manufacturer = company.id_company  AND
+
+purchase.buyer='Wayne' AND company.Country='USA'
+
+19 - SELECT COUNT(*), company.Country FROM `purchase`,company,product WHERE purchase.product = product.id_product AND product.Manufacturer = company.id_company AND purchase.buyer= 'Wayne' GROUP BY company.Country;
+	- solution 2:
+	SELECT DISTINCT company.Country FROM `purchase`,company,product WHERE purchase.product = product.id_product AND product.Manufacturer = company.id_company AND purchase.buyer= 'Wayne';
+
+20 - SELECT product.`PName`, COUNT(*) FROM `product`, purchase 
+
+WHERE 
+purchase.product = product.id_product  
+
+
+
+GROUP BY product.id_product
+
+21 - SELECT product.`PName`, COUNT(*) AS `total` FROM `product`, purchase 
+
+WHERE 
+purchase.product = product.id_product  
+
+
+
+GROUP BY product.id_product ORDER BY `total` DESC LIMIT 1
+
+22 - SELECT DISTINCT buyer FROM purchase
+
+23 - SELECT DISTINCT product.PName FROM `purchase`,product WHERE
+purchase.product = product.id_product 
+AND
+purchase.date >= '2003-01-01'
+
+
+24 - SELECT DISTINCT company.CName FROM `product`,purchase,company WHERE purchase.product = product.id_product AND product.Manufacturer = company.id_company AND purchase.payment_method='Credit card';
+
+
+
+
