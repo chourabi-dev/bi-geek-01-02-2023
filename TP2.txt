@@ -1,0 +1,19 @@
+1 - SELECT COUNT(*) AS `total` from `game`
+2 - SELECT COUNT(*) AS `total` FROM `game` WHERE `game_name` LIKE '%war%'
+3 - SELECT COUNT(*) AS `total` FROM `genre`
+4 - SELECT COUNT(*) AS `count`, genre.genre_name FROM `game`,genre WHERE game.genre_id =genre.id GROUP BY game.id
+5 - SELECT publisher.publisher_name FROM `game_publisher`,game,publisher WHERE 
+
+game_publisher.game_id = game.id AND
+game_publisher.publisher_id = publisher.id AND
+game.game_name='007: Quantum of Solace'
+6 - SELECT publisher.publisher_name,game.game_name 
+
+FROM `game_publisher`,game,publisher,genre WHERE 
+game_publisher.game_id = game.id AND 
+game_publisher.publisher_id = publisher.id AND
+game.genre_id = genre.id
+AND 
+publisher.publisher_name= 'Agetec' AND genre.genre_name='Action';
+
+7 - 
