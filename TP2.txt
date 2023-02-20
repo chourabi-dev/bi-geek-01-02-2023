@@ -16,4 +16,40 @@ game.genre_id = genre.id
 AND 
 publisher.publisher_name= 'Agetec' AND genre.genre_name='Action';
 
-7 - 
+7 - SELECT game.game_name , platform.platform_name FROM game_platform, game_publisher, platform,game WHERE game_platform.platform_id = platform.id AND game_platform.game_publisher_id = game_publisher.id AND game_publisher.game_id = game.id AND platform.platform_name='ps2'
+8 - SELECT game.game_name, publisher.publisher_name 
+FROM game_publisher, publisher,game WHERE 
+game_publisher.game_id = game.id AND 
+game_publisher.publisher_id = publisher.id
+9 - SELECT game.game_name, platform.platform_name FROM `game_publisher`, game,platform,game_platform WHERE 
+game_platform.platform_id = platform.id AND
+game_platform.game_publisher_id = game_publisher.id AND
+game_publisher.game_id = game.id AND
+
+game_platform.release_year >= 2007 AND
+platform.platform_name='wii'
+
+10 - SELECT SUM(`num_sales`) AS `profits` FROM `region_sales`
+11 - SELECT SUM(region_sales.`num_sales`) AS `profits` FROM `region_sales`, region WHERE region_sales.region_id = region.id AND region.region_name='Europe'
+12 - SELECT * FROM `region_sales`,region,platform,game_platform WHERE 
+game_platform.platform_id = platform.id AND
+region_sales.game_platform_id = game_platform.id AND
+region_sales.region_id = region.id AND
+
+region.region_name = 'Europe' AND
+platform.platform_name='ps2'
+13 - SELECT * FROM `region_sales`,region,game_platform,game_publisher,game,genre 
+WHERE 
+region_sales.region_id = region.id AND
+region_sales.game_platform_id = game_platform.id AND
+game_platform.game_publisher_id = game_publisher.id AND
+game_publisher.game_id = game.id AND
+game.genre_id = genre.id AND
+genre.genre_name='sports' AND region.region_name='europe'
+
+
+14 - SELECT SUM(region_sales.num_sales) AS `sells`, region.region_name FROM `region_sales`,region WHERE region_sales.region_id = region.id GROUP BY region_sales.region_id ORDER BY `sells` DESC LIMIT 1
+
+
+
+
